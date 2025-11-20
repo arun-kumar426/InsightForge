@@ -4,7 +4,7 @@ import streamlit as st
 # FINAL FIX: Import AgentType from the base langchain package (Resolves Pylance warning)
 from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
-
+from langchain.agents import AgentType
 
 
 # Assuming you have set your GEMINI_API_KEY securely in .streamlit/secrets.toml
