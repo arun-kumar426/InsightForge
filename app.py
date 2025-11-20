@@ -48,20 +48,20 @@ if prompt := st.chat_input("Ask a question about sales data..."):
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # FIXED: .run() for older LangChain versions; use .invoke() if 0.3+
+    
     if st.session_state.agent is not None:
         try:
             with st.spinner('Analyzing data and generating insight...'):
-                ai_response = st.session_state.agent.run(prompt)  # Use .run() for 0.2.x compatibility
+                ai_response = st.session_state.agent.run(prompt)  
 
         except Exception as e:
             ai_response = f"An error occurred during analysis. Please try rephrasing your question. Error: {e}"
     else:
         ai_response = "Data agent is not available. Please ensure 'sales_data.csv' exists and is correctly loaded."
 
-    # Display assistant response
+    
     with st.chat_message("assistant"):
         st.markdown(ai_response)
         
-    # Add assistant response to chat history
+    
     st.session_state.messages.append({"role": "assistant", "content": ai_response})
