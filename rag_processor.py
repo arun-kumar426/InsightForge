@@ -2,9 +2,9 @@ import pandas as pd
 import os
 import streamlit as st
 
-# FIXED IMPORTS: AgentType from agent_types module; pandas agent from community
+# FIXED IMPORTS: AgentType from langchain.agents.agent_types; pandas agent from langchain_experimental.agents
 from langchain.agents.agent_types import AgentType
-from langchain_community.agents import create_pandas_dataframe_agent
+from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Assuming you have set your GEMINI_API_KEY securely in .streamlit/secrets.toml
