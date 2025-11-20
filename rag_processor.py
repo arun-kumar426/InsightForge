@@ -1,11 +1,11 @@
 import pandas as pd
 import os
 import streamlit as st
-# FINAL FIX: Import AgentType from the base langchain package (Resolves Pylance warning)
-from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.agents import AgentType
 
+# FIXED IMPORTS: AgentType from agent_types module; pandas agent from community
+from langchain.agents.agent_types import AgentType
+from langchain_community.agents import create_pandas_dataframe_agent
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Assuming you have set your GEMINI_API_KEY securely in .streamlit/secrets.toml
 try:
@@ -17,7 +17,6 @@ except KeyError:
 if not GEMINI_API_KEY:
     # This ensures the app doesn't crash if the key is missing on deployment
     st.error("FATAL ERROR: Gemini API Key not found in Streamlit secrets or environment.")
-    
 
 def load_data(file_path: str) -> pd.DataFrame:
     """Loads and preprocesses the sales data."""
@@ -60,9 +59,8 @@ def setup_agent(df: pd.DataFrame):
         # CRITICAL: Allows the LLM to execute Python code on the DataFrame
         allow_dangerous_code=True, 
 
-        # Removed deprecated/unsupported parameters:
-        # handle_parsing_errors=True is handled internally
-        # agent_executor_kwargs={"handle_parsing_errors": True} is unsupported
+        # FIXED: handle_parsing_errors for error recovery
+        handle_parsing_errors=True,
     )
     
     return agent

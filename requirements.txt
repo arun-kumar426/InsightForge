@@ -1,8 +1,9 @@
-streamlit
-pandas
-google-genai
-langchain
-plotly
-scikit-learn
-langchain-experimental
-langchain-google-genai
+streamlit==1.38.0
+pandas==2.2.2
+plotly==5.22.0
+google-generativeai==0.7.2
+langchain==0.2.16
+langchain-community==0.2.12
+langchain-google-genai==1.0.8
+scikit-learn==1.5.1
+python-dotenv==1.0.1

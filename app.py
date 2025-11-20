@@ -48,14 +48,11 @@ if prompt := st.chat_input("Ask a question about sales data..."):
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    #. Get AI Response (LLM Application/Chain Prompts/RAG System)
+    # FIXED: .run() for older LangChain versions; use .invoke() if 0.3+
     if st.session_state.agent is not None:
         try:
             with st.spinner('Analyzing data and generating insight...'):
-                ai_response = st.session_state.agent.invoke(
-                    {"input": prompt}
-                )['output']
-
+                ai_response = st.session_state.agent.run(prompt)  # Use .run() for 0.2.x compatibility
 
         except Exception as e:
             ai_response = f"An error occurred during analysis. Please try rephrasing your question. Error: {e}"
