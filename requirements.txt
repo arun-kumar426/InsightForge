@@ -5,3 +5,4 @@ langchain
 plotly
 scikit-learn
 langchain-experimental
+langchain-google-genai
